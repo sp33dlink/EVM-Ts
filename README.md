@@ -15,7 +15,6 @@
 # Installation
 
 TODO
-TODO: default values, validate error message from usage
 
 # Usage
 
