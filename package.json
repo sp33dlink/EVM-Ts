@@ -8,13 +8,12 @@
     "test": "jest",
     "lint": "eslint src/**/*.ts"
   },
-  "dependencies": {
+  "dependencies": {},
+  "devDependencies": {
     "eslint": "^8.9.0",
     "jest": "^27.5.1",
     "prettier": "^2.5.1",
-    "typescript": "^4.5.5"
-  },
-  "devDependencies": {
+    "typescript": "^4.5.5",
     "@types/jest": "^27.4.1",
     "ts-jest": "^27.1.3"
   }
