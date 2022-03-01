@@ -8,7 +8,7 @@
 - useful errors when validations fail
 - ✅ full test coverage
 - validates all json types (including other objects and lists)
-- required and optional properties
+- required, optional and default value properties
 - use real classes with methods instead of interfaces
 
 
