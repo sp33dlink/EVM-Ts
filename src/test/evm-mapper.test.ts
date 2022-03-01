@@ -118,6 +118,14 @@ describe('EvmMapper tests', () => {
       EvmMapper.getEntity({}, NonEvmEntityClass as any)
     }).toThrowError(`Clazz is missing the EvmSchema`)
   })
+
+  it('should throw error when wrong EntityClass is passed as property type', () => {
+    const json = { value: 3, missingEntityClazz: {} }
+
+    expect(() => {
+      EvmMapper.getEntity(json, OtherEvmEntity)
+    }).toThrowError(`missing evmEntityClazz in property`)
+  })
 })
 
 class SomeEvmEntity implements EvmEntity {
@@ -132,7 +140,7 @@ class SomeEvmEntity implements EvmEntity {
     return this.a * 2
   }
 
-  _evmSchema: EvmSchema = {
+  _evmSchema = {
     evmId: 'SomeEvmEntity',
     properties: [
       { id: 'a', type: EvmPropType.Number },
@@ -163,13 +171,21 @@ class SomeEvmEntity implements EvmEntity {
 
 class OtherEvmEntity implements EvmEntity {
   value!: number
+  missingEntityClazz?: NonEvmEntityClass
   get valueText(): string {
     return `${this.value}`
   }
 
   _evmSchema: EvmSchema = {
     evmId: 'OtherEvmEntity',
-    properties: [{ id: 'value', type: EvmPropType.Number }],
+    properties: [
+      { id: 'value', type: EvmPropType.Number },
+      {
+        id: 'missingEntityClazz',
+        type: EvmPropType.EvmEntity,
+        required: false,
+      },
+    ],
   }
 }
 

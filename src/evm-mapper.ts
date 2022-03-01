@@ -63,7 +63,11 @@ export default class EvmMapper {
     }
     if (property.type === EvmPropType.EvmEntity && jsonValue != null) {
       if (property.evmEntityClazz == null)
-        this.throwErr(`${path}.${property.id}`, `missing evmEntityClazz`, property)
+        this.throwErr(
+          `${path}.${property.id}`,
+          `missing evmEntityClazz in property`,
+          property
+        )
       else
         return this.mapEntity(
           jsonValue,
