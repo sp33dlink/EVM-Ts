@@ -40,7 +40,9 @@ class SampleEntity implements EvmEntity {
 ### 2. map the data from your backend
 ``` typescript
 const jsonData = { firstProperty: 3, anotherProperty: 'test' }
+
 const sampleInstance = EvmMapper.getEntity(jsonData, SampleEntity)
+
 sampleInstance.id // => 3
 sampleInstance.doubleId() // => 6 
 sampleInstance.optional // => undefined
@@ -48,6 +50,8 @@ sampleInstance.optional // => undefined
 ### 2. get notified on failed validations
 ``` typescript
 const jsonData = { firstProperty: 3, listOfOtherEntity: [ { anotherList: [ true, 'false' ] } ] }
+
 EvmMapper.getEntity(jsonData, SampleEntity)
+
 // => EvmEntityError: 'SampleEntity.listOfOtherEntity[0].anotherList[1]' expected 'boolean' but was 'string'
 ```
