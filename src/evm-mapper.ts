@@ -37,19 +37,24 @@ export default class EvmMapper {
 
     schema.properties.forEach((prop) => {
       const jsonValue = this.getJsonValueFor(prop, json)
+      const propIdKey = prop.id as keyof EvmEntity
+      let mappedValue: any
 
       if (jsonValue != null) this.checkPropType(jsonValue, prop, path)
       else if (prop.required !== false)
         this.throwErr(path, 'is required but not present', prop)
 
       if (!Array.isArray(jsonValue))
-        instance[prop.id as keyof EvmEntity] = this.mapValue(jsonValue, prop, path)
-      else
-        instance[prop.id as keyof EvmEntity] = this.mapArrayValues(
-          jsonValue,
-          prop,
-          path
-        )
+        mappedValue = this.mapValue(jsonValue, prop, path)
+      else mappedValue = this.mapArrayValues(jsonValue, prop, path)
+
+      if (
+        instance[propIdKey] !== undefined &&
+        prop.required === false &&
+        mappedValue === undefined
+      )
+        return
+      instance[propIdKey] = mappedValue
     })
   }
 
@@ -58,24 +63,16 @@ export default class EvmMapper {
     property: EvmEntityProperty,
     path: string
   ): any {
+    path += `.${property.id}`
     if (property.mappingFn != null) {
       return property.mappingFn(jsonValue)
     }
     if (property.type === EvmPropType.EvmEntity && jsonValue != null) {
       if (property.evmEntityClazz == null)
-        this.throwErr(
-          `${path}.${property.id}`,
-          `missing evmEntityClazz in property`,
-          property
-        )
-      else
-        return this.mapEntity(
-          jsonValue,
-          property.evmEntityClazz,
-          `${path}.${property.id}`
-        )
+        this.throwErr(path, `missing evmEntityClazz in property`, property)
+      else return this.mapEntity(jsonValue, property.evmEntityClazz, path)
     }
-    return jsonValue
+    return jsonValue /* ? */
   }
 
   private static mapArrayValues(

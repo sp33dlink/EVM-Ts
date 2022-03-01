@@ -47,6 +47,22 @@ describe('EvmMapper tests', () => {
     }).toThrowError(`.x' unexpected property`)
   })
 
+  it('should leave default property with default value when json does not contain it', () => {
+    const json = MIN_JSON
+
+    const instance = EvmMapper.getEntity(json, SomeEvmEntity)
+
+    expect(instance.defaultProp).toBeTruthy()
+  })
+
+  it('should overwrite default property with json value when json contains it', () => {
+    const json = FULL_JSON
+
+    const instance = EvmMapper.getEntity(json, SomeEvmEntity)
+
+    expect(instance.defaultProp).toBeFalsy()
+  })
+
   it('should map empty array to instance with empty array', () => {
     const json = { ...MIN_JSON, array: [] }
 
@@ -131,6 +147,7 @@ describe('EvmMapper tests', () => {
 class SomeEvmEntity implements EvmEntity {
   a!: number
   b?: string
+  defaultProp = true
   array!: boolean[]
   otherEvm?: OtherEvmEntity
   otherEvmList?: OtherEvmEntity[]
@@ -145,6 +162,7 @@ class SomeEvmEntity implements EvmEntity {
     properties: [
       { id: 'a', type: EvmPropType.Number },
       { id: 'b', type: EvmPropType.String, required: false },
+      { id: 'defaultProp', type: EvmPropType.Boolean, required: false },
       { id: 'array', type: EvmPropType.Boolean, array: true },
       {
         id: 'otherEvm',
@@ -199,6 +217,7 @@ const MIN_JSON = {
 const FULL_JSON = {
   a: 3,
   b: 'five',
+  defaultProp: false,
   array: [false, true],
   otherEvm: { value: 8 },
 }
