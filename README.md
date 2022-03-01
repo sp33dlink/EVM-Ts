@@ -41,9 +41,9 @@ class SampleEntity implements EvmEntity {
 ``` typescript
 const jsonData = { firstProperty: 3, anotherProperty: 'test' }
 const sampleInstance = EvmMapper.getEntity(jsonData, SampleEntity)
-console.log(sampleInstance.id) // => 3
-console.log(sampleInstance.doubleId()) // => 6 
-console.log(sampleInstance.optional) // => undefined
+sampleInstance.id // => 3
+sampleInstance.doubleId() // => 6 
+sampleInstance.optional // => undefined
 ```
 ### 2. get notified on failed validations
 ``` typescript
