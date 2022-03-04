@@ -99,9 +99,10 @@ describe('EvmMapper tests', () => {
     const json = FULL_JSON
 
     const instance = EvmMapper.getEntity(json, SomeEvmEntity)
-
-    expect(instance.otherEvm!.value).toBe(json.otherEvm.value)
-    expect(instance.otherEvm!.valueText).toBe(json.otherEvm.value.toString())
+    expect(instance.otherEvm).toBeTruthy()
+    if (instance.otherEvm == null) return
+    expect(instance.otherEvm.value).toBe(json.otherEvm.value)
+    expect(instance.otherEvm.valueText).toBe(json.otherEvm.value.toString())
   })
 
   it('should throw error when json has wrong poptype of OtherEvmEntity', () => {
@@ -126,7 +127,9 @@ describe('EvmMapper tests', () => {
     const json = { ...FULL_JSON, mapped: '2022-02-28' }
 
     const instance = EvmMapper.getEntity(json, SomeEvmEntity)
-    expect(instance.mapped!.getFullYear()).toBe(2022)
+    expect(instance.mapped).toBeTruthy()
+    if (instance.mapped == null) return
+    expect(instance.mapped.getFullYear()).toBe(2022)
   })
 
   it('should throw error when wrong EntityClass is passed', () => {

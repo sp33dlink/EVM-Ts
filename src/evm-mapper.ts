@@ -6,7 +6,7 @@ export default class EvmMapper {
   }
 
   private static mapEntity<T extends EvmEntity>(
-    json: any,
+    json: object,
     clazz: new () => T,
     path = ''
   ): T {
@@ -132,7 +132,7 @@ export default class EvmMapper {
     text: string,
     property?: EvmEntityProperty,
     listIndex?: number
-  ) {
+  ): void {
     let propertyText = property ? `.${property.id}` : ''
     if (listIndex != null && property != null) propertyText += `[${listIndex}]`
     throw new Error(`EvmEntityError: '${path}${propertyText}' ${text}`)
