@@ -9,7 +9,7 @@ jobs:
     steps:
       - checkout
       - node/install-packages
-      - run: npm run build 
+      - run: npm run build
   test:
     executor: node/default
     steps:
@@ -21,8 +21,8 @@ jobs:
     steps:
       - checkout
       - node/install-packages
-      - run: npm run lint 
-    
+      - run: npm run lint
+
 workflows:
   ci-build:
     jobs:
@@ -36,19 +36,7 @@ workflows:
           filters:
             branches:
               only: master
-          post-publish-steps:
-            - save_cache:
-                key: 'v1-node-cache-{{ .Branch }}-{{ checksum "package-lock.json" }}'
-                paths:
-                  - node_modules
           pre-publish-steps:
-            - restore_cache:
-                keys:
-                  - >-
-                    v1-node-cache-{{ .Branch }}-{{ checksum "package-lock.json"
-                    }}
-                  - 'v1-node-cache-{{ .Branch }}'
-                  - v1-node-cache-
             - run: npm ci
             - run: npm run build
           publish-token-variable: NPM_TOKEN

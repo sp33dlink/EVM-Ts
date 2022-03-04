@@ -1,7 +1,7 @@
 {
   "compileOnSave": true,
   "compilerOptions": {
-    "incremental": true,
+    "incremental": false,
     "target": "es2016",
     "module": "CommonJS",
     "outDir": "./lib",
@@ -12,5 +12,5 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true
   },
-  "exclude": ["**/*.test.ts", "**/*.spec.ts"]
+  "exclude": ["**/*.test.ts", "**/*.spec.ts", "./lib/**/*"]
 }
