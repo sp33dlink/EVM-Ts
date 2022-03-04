@@ -1,7 +1,6 @@
 
-# EVM-Ts
+# EVM-Ts [![CircleCI](https://circleci.com/gh/sp33dlink/EVM-Ts/tree/master.svg?style=shield)](https://circleci.com/gh/sp33dlink/EVM-Ts/tree/master)
 
-[![CircleCI](https://circleci.com/gh/sp33dlink/EVM-Ts/tree/master.svg?style=shield)](https://circleci.com/gh/sp33dlink/EVM-Ts/tree/master)
 ***E**ntity **v**alidation and **m**apping for typescript*
 
 => Validates json data and maps it into actual and valid typescript classes.
