@@ -2,7 +2,7 @@
   "name": "evm-ts",
   "displayName": "EVM-Ts",
   "description": "Entity validation and mapping for typescript.",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
