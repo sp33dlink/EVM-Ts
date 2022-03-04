@@ -49,7 +49,7 @@ workflows:
                     }}
                   - 'v1-node-cache-{{ .Branch }}'
                   - v1-node-cache-
-            - run: npm install
-            - run: npm build
+            - run: npm ci
+            - run: npm run build
           publish-token-variable: NPM_TOKEN
           push-git-tag: true
