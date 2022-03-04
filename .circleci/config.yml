@@ -1,0 +1,30 @@
+version: 2.1
+orbs:
+  node: circleci/node@5.0.0
+
+jobs:
+  build:
+    executor: node/default
+    steps:
+      - checkout
+      - node/install-packages
+      - run: npm run build 
+  test:
+    executor: node/default
+    steps:
+      - checkout
+      - node/install-packages
+      - run: npm run test
+  lint:
+    executor: node/default
+    steps:
+      - checkout
+      - node/install-packages
+      - run: npm run lint 
+    
+workflows:
+  ci-build:
+    jobs:
+      - build
+      - test
+      - lint
