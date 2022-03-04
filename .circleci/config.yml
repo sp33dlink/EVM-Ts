@@ -4,29 +4,26 @@ orbs:
 
 jobs:
   build:
-    docker:
-      - image: cimg/base:stable
+    executor: node/default
     steps:
       - checkout
       - node/install-packages
       - run: npm run build 
   test:
-    docker:
-      - image: cimg/base:stable
+    executor: node/default
     steps:
       - checkout
       - node/install-packages
       - run: npm run test
   lint:
-    docker:
-      - image: cimg/base:stable
+    executor: node/default
     steps:
       - checkout
       - node/install-packages
       - run: npm run lint 
     
 workflows:
-  example-workflow:
+  ci-build:
     jobs:
       - build
       - test
