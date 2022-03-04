@@ -52,4 +52,4 @@ workflows:
             - run: npm ci
             - run: npm run build
           publish-token-variable: NPM_TOKEN
-          push-git-tag: true
+          push-git-tag: false
