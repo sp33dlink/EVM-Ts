@@ -11,5 +11,6 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true
-  }
+  },
+  "exclude": ["**/*.test.ts", "**/*.spec.ts"]
 }
