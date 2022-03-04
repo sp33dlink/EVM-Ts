@@ -3,7 +3,7 @@
 
 ***E**ntity **v**alidation and **m**apping for typescript*
 
-=> Validates json data and maps it into actual and valid typescript classes.
+*=> Validates json data and maps it into actual and valid typescript classes.
 - jokingly small (no dependencies) and easy as 🍰 to use
 - useful errors when validations fail
 - ✅ full test coverage
@@ -47,7 +47,7 @@ sampleInstance.id // => 3
 sampleInstance.doubleId() // => 6 
 sampleInstance.optional // => undefined
 ```
-### 2. get notified on failed validations
+### 3. get notified on failed validations
 ``` typescript
 const jsonData = { firstProperty: 3, listOfOtherEntity: [ { anotherList: [ true, 'false' ] } ] }
 
