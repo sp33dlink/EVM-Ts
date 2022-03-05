@@ -2,7 +2,7 @@
   "name": "evm-ts",
   "displayName": "EVM-Ts",
   "description": "Entity validation and mapping for typescript.",
-  "version": "0.0.3",
+  "version": "0.1.0",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
@@ -10,6 +10,11 @@
     "test": "jest",
     "lint": "eslint src/**/*.ts"
   },
+  "files": [
+    "LICENSE",
+    "README.md",
+    "lib"
+  ],
   "dependencies": {},
   "devDependencies": {
     "@types/jest": "^27.4.1",
