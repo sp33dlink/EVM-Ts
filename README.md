@@ -14,7 +14,7 @@
 
 # Installation
 
-TODO
+```npm i evm-ts```
 
 # Usage
 
